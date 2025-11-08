@@ -43,10 +43,10 @@ const NetWorth = () => {
         <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-display font-extrabold mb-4 tracking-tight">Net Worth Tracker</h1>
 
         {/* Net Worth Card & Assets/Liabilities */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-          {/* Total Net Worth - spans 2 columns */}
-          <div className="lg:col-span-2 bg-card border border-border rounded-2xl lg:rounded-3xl p-8 lg:p-10 xl:p-12 animate-fade-in min-h-[200px] lg:min-h-[240px]">
-            <div className="flex items-center justify-between mb-6">
+        <div className="space-y-6 lg:space-y-8">
+          {/* Total Net Worth - full width, reduced height */}
+          <div className="bg-card border border-border rounded-2xl lg:rounded-3xl p-6 lg:p-8 animate-fade-in">
+            <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl lg:text-2xl font-semibold">Total Net Worth</h2>
               <TooltipProvider>
                 <Tooltip>
@@ -62,11 +62,11 @@ const NetWorth = () => {
             <p className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-display font-extrabold text-foreground tracking-tight break-words">{formatCurrency(netWorth)}</p>
           </div>
 
-          {/* Assets/Liabilities Cards */}
-          <div className="grid grid-cols-2 lg:grid-cols-1 gap-6 lg:gap-8">
+          {/* Assets/Liabilities Cards - full width, less height than net worth */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
             {/* Assets */}
-            <div className="bg-card border border-border rounded-2xl lg:rounded-3xl p-6 lg:p-8 xl:p-10 animate-fade-in hover-scale min-h-[160px] lg:min-h-[100px]">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-card border border-border rounded-2xl lg:rounded-3xl p-6 lg:p-7 animate-fade-in hover-scale">
+              <div className="flex items-center justify-between mb-3">
                 <h3 className="text-base lg:text-xl font-semibold">Total Assets</h3>
                 <Button
                   variant="ghost"
@@ -81,8 +81,8 @@ const NetWorth = () => {
             </div>
 
             {/* Liabilities */}
-            <div className="bg-card border border-border rounded-2xl lg:rounded-3xl p-6 lg:p-8 xl:p-10 animate-fade-in hover-scale min-h-[160px] lg:min-h-[100px]">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-card border border-border rounded-2xl lg:rounded-3xl p-6 lg:p-7 animate-fade-in hover-scale">
+              <div className="flex items-center justify-between mb-3">
                 <h3 className="text-base lg:text-xl font-semibold">Total Liabilities</h3>
                 <Button
                   variant="ghost"
