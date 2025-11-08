@@ -4,7 +4,6 @@ import { formatCurrency } from '@/lib/formatters';
 import { Pencil, Sparkles, Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
-import NetWorthGrowthPredictor from '@/components/net-worth/NetWorthGrowthPredictor';
 import AssetLiabilityRatio from '@/components/net-worth/AssetLiabilityRatio';
 import AssetAllocation from '@/components/net-worth/AssetAllocation';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
@@ -110,12 +109,6 @@ const NetWorth = () => {
             </div>
           </div>
         </div>
-
-        {/* Growth Predictor - Full Width */}
-        <NetWorthGrowthPredictor 
-          currentNetWorth={netWorth}
-          trendData={assetsLiabilities}
-        />
 
         {/* Asset Allocation - Full Width */}
         <AssetAllocation assets={assets} />

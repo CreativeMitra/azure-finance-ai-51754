@@ -21,20 +21,9 @@ const AssetLiabilityRatio = ({ totalAssets, totalLiabilities }: AssetLiabilityRa
       
       {/* Ratio Display */}
       <div className="text-center mb-6 lg:mb-8 p-6 rounded-2xl bg-background/40 border border-border/30">
-        <p className="text-4xl lg:text-5xl xl:text-6xl font-display font-extrabold bg-gradient-to-r from-success via-primary to-accent bg-clip-text text-transparent mb-3 tracking-tight">
+        <p className="text-4xl lg:text-5xl xl:text-6xl font-display font-extrabold bg-gradient-to-r from-success via-primary to-accent bg-clip-text text-transparent tracking-tight">
           {ratio.toFixed(1)}<span className="text-xl lg:text-2xl xl:text-3xl font-bold"> : 1</span>
         </p>
-        <div className="flex items-center justify-center gap-3 text-sm lg:text-base">
-          <span className="text-muted-foreground">
-            Trending
-          </span>
-          {trend === 'positive' ? (
-            <TrendingUp className="w-5 h-5 lg:w-6 lg:h-6 text-success animate-pulse" />
-          ) : (
-            <TrendingDown className="w-5 h-5 lg:w-6 lg:h-6 text-destructive animate-pulse" />
-          )}
-          <span className={`font-semibold ${trend === 'positive' ? 'text-success' : 'text-destructive'}`}>+0.2%</span>
-        </div>
       </div>
 
       {/* Visual Bar with glow effect */}
