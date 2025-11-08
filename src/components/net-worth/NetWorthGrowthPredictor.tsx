@@ -45,8 +45,8 @@ const NetWorthGrowthPredictor = ({ currentNetWorth, trendData }: NetWorthGrowthP
 
   if (!predictions) {
     return (
-      <div className="bg-card border border-border rounded-2xl lg:rounded-3xl p-6 lg:p-8 xl:p-10 animate-fade-in min-h-[300px]">
-        <div className="flex items-center gap-4 mb-6">
+      <div className="bg-card border border-border rounded-2xl lg:rounded-3xl p-6 lg:p-8 animate-fade-in">
+        <div className="flex items-center gap-4 mb-4">
           <TrendingUp className="w-6 h-6 lg:w-7 lg:h-7 text-primary" />
           <h3 className="text-xl lg:text-2xl font-display font-semibold">AI Growth Predictor</h3>
         </div>
@@ -56,28 +56,28 @@ const NetWorthGrowthPredictor = ({ currentNetWorth, trendData }: NetWorthGrowthP
   }
 
   return (
-    <div className="bg-card border border-border rounded-2xl lg:rounded-3xl p-6 lg:p-8 xl:p-10 animate-fade-in min-h-[300px]">
-      <div className="flex items-center gap-4 mb-4">
+    <div className="bg-card border border-border rounded-2xl lg:rounded-3xl p-6 lg:p-8 animate-fade-in">
+      <div className="flex items-center gap-4 mb-3">
         <TrendingUp className="w-6 h-6 lg:w-7 lg:h-7 text-primary" />
         <h3 className="text-xl lg:text-2xl font-display font-semibold">AI Growth Predictor</h3>
       </div>
-      <p className="text-sm lg:text-base text-foreground mb-8">
+      <p className="text-sm lg:text-base text-foreground mb-6">
         Your net worth is projected to continue its upward trend based on your current financial habits.
       </p>
 
-      {/* Projection Timeline */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-        <div className="bg-secondary/30 rounded-xl lg:rounded-2xl p-6 lg:p-8 xl:p-10 hover-scale transition-all min-h-[140px] lg:min-h-[160px]">
-          <p className="text-sm lg:text-base text-foreground/70 mb-3 lg:mb-4">3-Month Projection</p>
-          <p className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-display font-extrabold text-foreground break-words leading-tight">{formatCurrency(predictions.threeMonth)}</p>
+      {/* Projection Timeline - Full width, reduced height */}
+      <div className="grid grid-cols-1 gap-4 lg:gap-6">
+        <div className="bg-secondary/30 rounded-xl lg:rounded-2xl p-5 lg:p-6 hover-scale transition-all">
+          <p className="text-sm lg:text-base text-foreground/70 mb-2">3-Month Projection</p>
+          <p className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-foreground break-words leading-tight">{formatCurrency(predictions.threeMonth)}</p>
         </div>
-        <div className="bg-secondary/40 rounded-xl lg:rounded-2xl p-6 lg:p-8 xl:p-10 hover-scale transition-all min-h-[140px] lg:min-h-[160px]">
-          <p className="text-sm lg:text-base text-foreground/70 mb-3 lg:mb-4">6-Month Projection</p>
-          <p className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-display font-extrabold text-foreground break-words leading-tight">{formatCurrency(predictions.sixMonth)}</p>
+        <div className="bg-secondary/40 rounded-xl lg:rounded-2xl p-5 lg:p-6 hover-scale transition-all">
+          <p className="text-sm lg:text-base text-foreground/70 mb-2">6-Month Projection</p>
+          <p className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-foreground break-words leading-tight">{formatCurrency(predictions.sixMonth)}</p>
         </div>
-        <div className="bg-secondary/50 rounded-xl lg:rounded-2xl p-6 lg:p-8 xl:p-10 hover-scale transition-all min-h-[140px] lg:min-h-[160px] sm:col-span-2 lg:col-span-1">
-          <p className="text-sm lg:text-base text-foreground/70 mb-3 lg:mb-4">1-Year Projection</p>
-          <p className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-display font-extrabold text-foreground break-words leading-tight">{formatCurrency(predictions.oneYear)}</p>
+        <div className="bg-secondary/50 rounded-xl lg:rounded-2xl p-5 lg:p-6 hover-scale transition-all">
+          <p className="text-sm lg:text-base text-foreground/70 mb-2">1-Year Projection</p>
+          <p className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-foreground break-words leading-tight">{formatCurrency(predictions.oneYear)}</p>
         </div>
       </div>
     </div>

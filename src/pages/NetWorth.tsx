@@ -62,8 +62,8 @@ const NetWorth = () => {
             <p className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-display font-extrabold text-foreground tracking-tight break-words">{formatCurrency(netWorth)}</p>
           </div>
 
-          {/* Assets/Liabilities Cards - full width, less height than net worth */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
+          {/* Assets/Liabilities Cards - full width, same vertical height */}
+          <div className="grid grid-cols-1 gap-6 lg:gap-8">
             {/* Assets */}
             <div className="bg-card border border-border rounded-2xl lg:rounded-3xl p-6 lg:p-7 animate-fade-in hover-scale">
               <div className="flex items-center justify-between mb-3">
@@ -111,22 +111,22 @@ const NetWorth = () => {
           </div>
         </div>
 
-        {/* Growth Predictor & Ratio */}
+        {/* Growth Predictor - Full Width */}
+        <NetWorthGrowthPredictor 
+          currentNetWorth={netWorth}
+          trendData={assetsLiabilities}
+        />
+
+        {/* Asset Allocation & Ratio */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
           <div className="lg:col-span-2">
-            <NetWorthGrowthPredictor 
-              currentNetWorth={netWorth}
-              trendData={assetsLiabilities}
-            />
+            <AssetAllocation assets={assets} />
           </div>
           <AssetLiabilityRatio 
             totalAssets={totalAssets}
             totalLiabilities={totalLiabilities}
           />
         </div>
-
-        {/* Asset Allocation */}
-        <AssetAllocation assets={assets} />
       </div>
     </div>
   );
