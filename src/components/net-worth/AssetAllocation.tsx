@@ -43,26 +43,33 @@ const AssetAllocation = ({ assets }: AssetAllocationProps) => {
     .sort((a, b) => b.value - a.value);
 
   return (
-    <div className="bg-card border border-border rounded-2xl lg:rounded-3xl p-6 lg:p-8 xl:p-10 animate-fade-in min-h-[200px]">
-      <h3 className="text-xl lg:text-2xl font-display font-semibold mb-8">Asset Allocation</h3>
+    <div className="relative overflow-hidden bg-gradient-to-br from-card via-card to-secondary/20 border border-border/50 rounded-2xl lg:rounded-3xl p-6 lg:p-7 xl:p-8 animate-fade-in hover-scale backdrop-blur-sm">
+      {/* Decorative gradient overlay */}
+      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10" />
+      <div className="absolute bottom-0 left-0 w-48 h-48 bg-accent/5 rounded-full blur-3xl -z-10" />
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-x-8 gap-y-6">
+      <h3 className="text-xl lg:text-2xl font-display font-semibold mb-6 text-heading">Asset Allocation</h3>
+      
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-x-6 gap-y-5">
         {allocations.map((item, index) => (
-          <div key={item.category} className="flex items-center gap-3 min-w-0">
+          <div key={item.category} className="group flex items-center gap-3 min-w-0 p-3 rounded-xl bg-background/40 hover:bg-background/60 transition-all duration-300 border border-border/30 hover:border-primary/50">
             <div 
-              className="w-4 h-4 lg:w-5 lg:h-5 rounded-full flex-shrink-0"
+              className="w-3 h-3 lg:w-4 lg:h-4 rounded-full flex-shrink-0 ring-2 ring-background/50 group-hover:ring-primary/30 transition-all duration-300 shadow-lg"
               style={{ backgroundColor: CHART_COLORS[index % CHART_COLORS.length] }}
             />
             <div className="min-w-0 flex-1">
-              <p className="text-sm lg:text-base font-medium text-foreground truncate">{item.category}</p>
-              <p className="text-sm text-foreground/70">{item.percentage.toFixed(item.percentage < 1 ? 1 : 0)}%</p>
+              <p className="text-xs lg:text-sm font-semibold text-foreground truncate group-hover:text-primary transition-colors">{item.category}</p>
+              <p className="text-xs lg:text-sm font-bold text-primary/90">{item.percentage.toFixed(item.percentage < 1 ? 1 : 0)}%</p>
             </div>
           </div>
         ))}
       </div>
 
       {allocations.length === 0 && (
-        <p className="text-center text-base lg:text-lg text-foreground/70 py-8">No assets added yet</p>
+        <div className="text-center py-12">
+          <p className="text-base lg:text-lg text-muted-foreground">No assets added yet</p>
+          <p className="text-sm text-muted-foreground/60 mt-2">Start by adding your assets to see allocation</p>
+        </div>
       )}
     </div>
   );

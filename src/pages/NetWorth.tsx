@@ -117,16 +117,14 @@ const NetWorth = () => {
           trendData={assetsLiabilities}
         />
 
-        {/* Asset Allocation & Ratio */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-          <div className="lg:col-span-2">
-            <AssetAllocation assets={assets} />
-          </div>
-          <AssetLiabilityRatio 
-            totalAssets={totalAssets}
-            totalLiabilities={totalLiabilities}
-          />
-        </div>
+        {/* Asset Allocation - Full Width */}
+        <AssetAllocation assets={assets} />
+
+        {/* Asset vs Liability Ratio - Full Width */}
+        <AssetLiabilityRatio 
+          totalAssets={totalAssets}
+          totalLiabilities={totalLiabilities}
+        />
       </div>
     </div>
   );
