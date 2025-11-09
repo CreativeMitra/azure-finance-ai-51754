@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Wallet, CreditCard, TrendingUp, Settings, LogOut } from 'lucide-react';
+import { LayoutDashboard, Wallet, CreditCard, TrendingUp, Target, TrendingDown, DollarSign, FileText, Activity, Settings, LogOut } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface LayoutProps {
@@ -12,9 +12,14 @@ const Layout = ({ children }: LayoutProps) => {
 
   const navItems = [
     { path: '/', icon: LayoutDashboard, label: 'Dashboard' },
-    { path: '/accounts', icon: Wallet, label: 'Accounts' },
-    { path: '/budgets', icon: CreditCard, label: 'Budgets' },
     { path: '/net-worth', icon: TrendingUp, label: 'Net Worth' },
+    { path: '/assets-liabilities', icon: Wallet, label: 'Assets & Liabilities' },
+    { path: '/budgets', icon: CreditCard, label: 'Budgets' },
+    { path: '/goals', icon: Target, label: 'Goals & Savings' },
+    { path: '/market-insights', icon: Activity, label: 'Market Insights' },
+    { path: '/loans-debt', icon: TrendingDown, label: 'Loans & Debt' },
+    { path: '/income-savings', icon: DollarSign, label: 'Income & Savings' },
+    { path: '/reports', icon: FileText, label: 'Reports & Insights' },
   ];
 
   return (
