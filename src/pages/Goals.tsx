@@ -149,7 +149,7 @@ const Goals = () => {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <div className="space-y-6">
         <div className="p-8 rounded-3xl bg-gradient-to-br from-primary/15 via-primary/10 to-primary/5 border-2 border-primary/20 shadow-lg hover:shadow-xl transition-all">
           <p className="text-sm font-semibold text-primary/80 mb-3 uppercase tracking-wide">Active Goals</p>
           <p className="text-5xl font-bold text-foreground mb-2">{goals.length}</p>
@@ -167,8 +167,8 @@ const Goals = () => {
         </div>
       </div>
 
-      {/* Goals Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Goals List */}
+      <div className="space-y-4">
         {goals.map((goal) => (
           <GoalCard 
             key={goal.id} 
