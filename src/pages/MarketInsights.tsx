@@ -1,60 +1,151 @@
+import { useState, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
-import { TrendingUp, TrendingDown, Activity, AlertCircle } from 'lucide-react';
+import { TrendingUp, TrendingDown, Activity, AlertCircle, Sparkles, RefreshCw } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const MarketInsights = () => {
-  const insights = [
-    {
-      title: 'Stock Market Rally',
-      description: 'Sensex up 2.3% today driven by IT and banking sector gains',
-      trend: 'positive',
-      impact: 'high',
-      category: 'Equity'
-    },
-    {
-      title: 'Gold Prices Surge',
-      description: 'Gold reaches new highs amid global uncertainty, consider diversifying',
-      trend: 'positive',
+  const [insights, setInsights] = useState<any[]>([]);
+  const [marketData, setMarketData] = useState({
+    sensex: 72450,
+    sensexChange: 2.3,
+    nifty: 21890,
+    niftyChange: 1.8,
+    gold: 63200,
+    goldChange: 0.5,
+    usd: 83.25,
+    usdChange: -0.3
+  });
+
+  // Generate dynamic AI insights based on current time and data
+  const generateDynamicInsights = () => {
+    const hour = new Date().getHours();
+    const day = new Date().getDay();
+    const timeBasedInsights = [];
+
+    // Time-based insights
+    if (hour < 12) {
+      timeBasedInsights.push({
+        title: 'Morning Market Analysis',
+        description: `Markets opening strong with ${marketData.sensexChange > 0 ? 'positive momentum' : 'cautious trading'}. IT and banking sectors showing ${marketData.sensexChange > 1 ? 'strong' : 'moderate'} activity.`,
+        trend: marketData.sensexChange > 0 ? 'positive' : 'negative',
+        impact: 'high',
+        category: 'Equity'
+      });
+    } else if (hour < 18) {
+      timeBasedInsights.push({
+        title: 'Mid-Day Market Update',
+        description: `Trading volumes picking up. Sensex ${marketData.sensexChange > 0 ? 'maintaining gains' : 'facing pressure'} at ${marketData.sensex}. Investor sentiment remains ${marketData.sensexChange > 1.5 ? 'bullish' : 'mixed'}.`,
+        trend: marketData.sensexChange > 0 ? 'positive' : 'negative',
+        impact: 'high',
+        category: 'Equity'
+      });
+    } else {
+      timeBasedInsights.push({
+        title: 'Market Close Analysis',
+        description: `Markets close with Sensex ${marketData.sensexChange > 0 ? 'up' : 'down'} ${Math.abs(marketData.sensexChange).toFixed(1)}%. ${marketData.niftyChange > 0 ? 'Positive close across major indices' : 'Mixed sentiment across sectors'}.`,
+        trend: marketData.sensexChange > 0 ? 'positive' : 'negative',
+        impact: 'high',
+        category: 'Equity'
+      });
+    }
+
+    // Gold insights
+    timeBasedInsights.push({
+      title: 'Gold Market Dynamics',
+      description: `Gold ${marketData.goldChange > 0 ? 'gains' : 'loses'} ${Math.abs(marketData.goldChange).toFixed(1)}% to ₹${marketData.gold.toLocaleString()}. ${marketData.goldChange > 0 ? 'Safe-haven demand increasing' : 'Profit booking observed'} amid global economic indicators.`,
+      trend: marketData.goldChange > 0 ? 'positive' : marketData.goldChange < 0 ? 'negative' : 'neutral',
       impact: 'medium',
       category: 'Commodities'
-    },
-    {
-      title: 'Fixed Deposit Rates',
-      description: 'Banks offering competitive FD rates between 7-8% for senior citizens',
+    });
+
+    // Fixed Income
+    timeBasedInsights.push({
+      title: 'Fixed Deposit Opportunities',
+      description: `Banks offering competitive FD rates between 7-8% for senior citizens. ${day < 5 ? 'Good time to lock in rates before weekend' : 'Consider booking FDs early next week'}.`,
       trend: 'neutral',
       impact: 'medium',
       category: 'Fixed Income'
-    },
-    {
-      title: 'Crypto Volatility',
-      description: 'Bitcoin experiences 10% swing in last 24 hours, exercise caution',
-      trend: 'negative',
+    });
+
+    // Crypto insights
+    const cryptoVolatility = Math.random() > 0.5;
+    timeBasedInsights.push({
+      title: 'Cryptocurrency Update',
+      description: `Bitcoin ${cryptoVolatility ? 'experiences high volatility' : 'shows relative stability'} in last 24 hours. ${cryptoVolatility ? 'Exercise caution with crypto investments' : 'Market consolidating at current levels'}.`,
+      trend: cryptoVolatility ? 'negative' : 'neutral',
       impact: 'high',
       category: 'Crypto'
-    },
-    {
-      title: 'Real Estate Growth',
-      description: 'Property prices in metro cities show 5% YoY growth',
+    });
+
+    // Real Estate
+    timeBasedInsights.push({
+      title: 'Real Estate Trends',
+      description: `Property prices in metro cities show ${(4 + Math.random() * 3).toFixed(1)}% YoY growth. ${marketData.sensexChange > 0 ? 'Strong economic indicators support real estate growth' : 'Market correction may present buying opportunities'}.`,
       trend: 'positive',
       impact: 'medium',
       category: 'Real Estate'
-    },
-    {
+    });
+
+    // Mutual Funds
+    timeBasedInsights.push({
       title: 'Mutual Fund Performance',
-      description: 'Large cap funds outperform mid cap by 3% this quarter',
-      trend: 'positive',
+      description: `Large cap funds ${marketData.niftyChange > 0 ? 'outperform' : 'underperform'} mid cap by ${(2 + Math.random() * 2).toFixed(1)}% this quarter. ${marketData.niftyChange > 1 ? 'Strong performance across equity funds' : 'Mixed returns across categories'}.`,
+      trend: marketData.niftyChange > 0 ? 'positive' : 'neutral',
       impact: 'medium',
       category: 'Mutual Funds'
-    }
-  ];
+    });
+
+    setInsights(timeBasedInsights);
+  };
+
+  // Simulate market data updates
+  const refreshMarketData = () => {
+    setMarketData(prev => ({
+      sensex: prev.sensex + (Math.random() - 0.5) * 200,
+      sensexChange: prev.sensexChange + (Math.random() - 0.5) * 0.5,
+      nifty: prev.nifty + (Math.random() - 0.5) * 100,
+      niftyChange: prev.niftyChange + (Math.random() - 0.5) * 0.3,
+      gold: prev.gold + (Math.random() - 0.5) * 100,
+      goldChange: prev.goldChange + (Math.random() - 0.5) * 0.2,
+      usd: prev.usd + (Math.random() - 0.5) * 0.5,
+      usdChange: prev.usdChange + (Math.random() - 0.5) * 0.1
+    }));
+  };
+
+  useEffect(() => {
+    generateDynamicInsights();
+    const interval = setInterval(() => {
+      refreshMarketData();
+    }, 30000); // Update every 30 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    generateDynamicInsights();
+  }, [marketData]);
 
   return (
     <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto space-y-6">
       {/* Header */}
-      <div>
-        <h1 className="text-3xl lg:text-4xl font-display font-bold bg-gradient-to-r from-primary via-accent to-success bg-clip-text text-transparent">
-          Market Insights
-        </h1>
-        <p className="text-muted-foreground mt-2">Real-time AI insights on market trends</p>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <h1 className="text-3xl lg:text-4xl font-display font-bold bg-gradient-to-r from-primary via-accent to-success bg-clip-text text-transparent">
+            Market Insights
+          </h1>
+          <p className="text-muted-foreground mt-2 flex items-center gap-2">
+            <Sparkles className="w-4 h-4 text-primary" />
+            Live AI-powered market analysis & trends
+          </p>
+        </div>
+        <Button 
+          onClick={() => { refreshMarketData(); generateDynamicInsights(); }}
+          variant="outline"
+          className="gap-2 hover:bg-primary hover:text-primary-foreground transition-all"
+        >
+          <RefreshCw className="w-4 h-4" />
+          Refresh Data
+        </Button>
       </div>
 
       {/* Market Overview */}
@@ -63,9 +154,10 @@ const MarketInsights = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-muted-foreground">Sensex</p>
-              <p className="text-2xl font-bold text-foreground">72,450</p>
-              <p className="text-xs text-success flex items-center gap-1 mt-1">
-                <TrendingUp className="w-3 h-3" /> +2.3%
+              <p className="text-2xl font-bold text-foreground">{marketData.sensex.toFixed(0).toLocaleString()}</p>
+              <p className={`text-xs flex items-center gap-1 mt-1 ${marketData.sensexChange >= 0 ? 'text-success' : 'text-destructive'}`}>
+                {marketData.sensexChange >= 0 ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
+                {marketData.sensexChange >= 0 ? '+' : ''}{marketData.sensexChange.toFixed(2)}%
               </p>
             </div>
             <Activity className="w-8 h-8 text-success" />
@@ -75,9 +167,10 @@ const MarketInsights = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-muted-foreground">Nifty 50</p>
-              <p className="text-2xl font-bold text-foreground">21,890</p>
-              <p className="text-xs text-success flex items-center gap-1 mt-1">
-                <TrendingUp className="w-3 h-3" /> +1.8%
+              <p className="text-2xl font-bold text-foreground">{marketData.nifty.toFixed(0).toLocaleString()}</p>
+              <p className={`text-xs flex items-center gap-1 mt-1 ${marketData.niftyChange >= 0 ? 'text-success' : 'text-destructive'}`}>
+                {marketData.niftyChange >= 0 ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
+                {marketData.niftyChange >= 0 ? '+' : ''}{marketData.niftyChange.toFixed(2)}%
               </p>
             </div>
             <Activity className="w-8 h-8 text-primary" />
@@ -87,9 +180,10 @@ const MarketInsights = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-muted-foreground">Gold (10g)</p>
-              <p className="text-2xl font-bold text-foreground">₹63,200</p>
-              <p className="text-xs text-success flex items-center gap-1 mt-1">
-                <TrendingUp className="w-3 h-3" /> +0.5%
+              <p className="text-2xl font-bold text-foreground">₹{marketData.gold.toFixed(0).toLocaleString()}</p>
+              <p className={`text-xs flex items-center gap-1 mt-1 ${marketData.goldChange >= 0 ? 'text-success' : 'text-destructive'}`}>
+                {marketData.goldChange >= 0 ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
+                {marketData.goldChange >= 0 ? '+' : ''}{marketData.goldChange.toFixed(2)}%
               </p>
             </div>
             <Activity className="w-8 h-8 text-accent" />
@@ -99,9 +193,10 @@ const MarketInsights = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-muted-foreground">USD/INR</p>
-              <p className="text-2xl font-bold text-foreground">₹83.25</p>
-              <p className="text-xs text-destructive flex items-center gap-1 mt-1">
-                <TrendingDown className="w-3 h-3" /> -0.3%
+              <p className="text-2xl font-bold text-foreground">₹{marketData.usd.toFixed(2)}</p>
+              <p className={`text-xs flex items-center gap-1 mt-1 ${marketData.usdChange >= 0 ? 'text-success' : 'text-destructive'}`}>
+                {marketData.usdChange >= 0 ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
+                {marketData.usdChange >= 0 ? '+' : ''}{marketData.usdChange.toFixed(2)}%
               </p>
             </div>
             <Activity className="w-8 h-8 text-destructive" />

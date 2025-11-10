@@ -13,7 +13,6 @@ const Layout = ({ children }: LayoutProps) => {
   const navItems = [
     { path: '/', icon: LayoutDashboard, label: 'Dashboard' },
     { path: '/net-worth', icon: TrendingUp, label: 'Net Worth' },
-    { path: '/assets-liabilities', icon: Wallet, label: 'Assets & Liabilities' },
     { path: '/budgets', icon: CreditCard, label: 'Budgets' },
     { path: '/goals', icon: Target, label: 'Goals & Savings' },
     { path: '/market-insights', icon: Activity, label: 'Market Insights' },
